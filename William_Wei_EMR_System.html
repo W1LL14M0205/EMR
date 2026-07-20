@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>William Wei Personal EMR</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,Segoe UI,sans-serif}
+:root{
+  --primary:#2563eb;
+  --primary-dark:#1d4ed8;
+  --bg:#f3f6fb;
+  --card:#ffffff;
+  --text:#1f2937;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --field:#f8fafc;
+}
+body.dark{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#f8fafc;
+  --muted:#94a3b8;
+  --border:#334155;
+  --field:#273449;
+}
+body{margin:0;background:var(--bg);color:var(--text);transition:.25s}
+.container{display:flex;min-height:100vh}
+.sidebar{
+  width:260px;background:var(--card);padding:24px;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;gap:8px
+}
+.logo{font-size:24px;font-weight:700;color:var(--primary);margin-bottom:18px}
+.nav-btn,.theme-btn,select{
+  width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);cursor:pointer;font-size:15px;text-align:left
+}
+.nav-btn:hover,.nav-btn.active{background:#dbeafe;color:var(--primary);border-color:#bfdbfe}
+.sidebar-bottom{margin-top:auto}
+select{margin-bottom:10px;text-align:left}
+.main{flex:1;padding:30px}
+.banner{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;padding:28px;border-radius:20px;margin-bottom:24px;
+  display:flex;align-items:center;gap:22px
+}
+.avatar{
+  width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;font-size:42px
+}
+.banner h1{margin:0 0 10px}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.badge{background:rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-size:14px}
+.section{display:none}
+.section.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:24px}
+.card h2{margin-top:0;color:var(--primary)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.field{background:var(--field);border-radius:12px;padding:15px}
+.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.value{font-size:18px;margin-top:5px}
+.empty{text-align:center;color:var(--muted);padding:48px 16px}
+@media(max-width:850px){
+  .container{flex-direction:column}
+  .sidebar{width:100%;border-right:none;border-bottom:1px solid var(--border)}
+  .main{padding:18px}
+  .banner{flex-direction:column;text-align:center}
+  .badges{justify-content:center}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<aside class="sidebar">
+  <div class="logo">🏥 EMR System</div>
+
+  <button class="nav-btn active" data-tab="profile">👤 <span data-i18n="profile">Profile</span></button>
+  <button class="nav-btn" data-tab="history">📋 <span data-i18n="history">Medical History</span></button>
+  <button class="nav-btn" data-tab="vitals">❤️ <span data-i18n="vitals">Vital Signs</span></button>
+  <button class="nav-btn" data-tab="crm">📞 <span data-i18n="crm">CRM</span></button>
+  <button class="nav-btn" data-tab="documents">📄 <span data-i18n="documents">Documents</span></button>
+
+  <div class="sidebar-bottom">
+    <select id="language">
+      <option value="en">English</option>
+      <option value="zh-TW">繁體中文</option>
+      <option value="zh-CN">简体中文</option>
+      <option value="ja">日本語</option>
+      <option value="ko">한국어</option>
+      <option value="es">Español</option>
+      <option value="fr">Français</option>
+      <option value="de">Deutsch</option>
+    </select>
+    <button class="theme-btn" id="themeBtn">🌙 <span data-i18n="darkMode">Dark Mode</span></button>
+  </div>
+</aside>
+
+<main class="main">
+  <section class="banner">
+    <div class="avatar">👤</div>
+    <div>
+      <h1>William Wei</h1>
+      <div class="badges">
+        <div class="badge" data-i18n="male">♂ Male</div>
+        <div class="badge" data-i18n="age17">🎂 17 Years Old</div>
+        <div class="badge">🩸 B+</div>
+        <div class="badge" data-i18n="noAllergies">⚠️ No Allergies</div>
+        <div class="badge">📏 172 cm</div>
+        <div class="badge">⚖️ 60.2 kg</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profile" class="section active">
+    <div class="card">
+      <h2 data-i18n="patientProfile">Patient Profile</h2>
+      <div class="grid">
+        <div class="field"><div class="label" data-i18n="name">Name</div><div class="value">William Wei</div></div>
+        <div class="field"><div class="label" data-i18n="dob">Date of Birth</div><div class="value">2009/02/05</div></div>
+        <div class="field"><div class="label" data-i18n="age">Age</div><div class="value">17</div></div>
+        <div class="field"><div class="label" data-i18n="gender">Gender</div><div class="value" data-i18n="maleText">Male</div></div>
+        <div class="field"><div class="label" data-i18n="bloodType">Blood Type</div><div class="value">B+</div></div>
+        <div class="field"><div class="label" data-i18n="allergies">Allergies</div><div class="value" data-i18n="none">None</div></div>
+        <div class="field"><div class="label" data-i18n="patientId">Patient ID</div><div class="value">—</div></div>
+        <div class="field"><div class="label" data-i18n="phone">Phone Number</div><div class="value">—</div></div>
+        <div class="field"><div class="label" data-i18n="email">Email</div><div class="value">—</div></div>
+        <div class="field"><div class="label" data-i18n="address">Address</div><div class="value">—</div></div>
+        <div class="field"><div class="label" data-i18n="emergency">Emergency Contact</div><div class="value">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history" class="section">
+    <div class="card">
+      <h2 data-i18n="medicalHistory">Medical History</h2>
+      <div class="empty" data-i18n="noHistory">No medical history records available.</div>
+    </div>
+  </section>
+
+  <section id="vitals" class="section">
+    <div class="card">
+      <h2 data-i18n="vitalSigns">Vital Signs</h2>
+      <div class="grid">
+        <div class="field"><div class="label" data-i18n="height">Height</div><div class="value">172 cm</div></div>
+        <div class="field"><div class="label" data-i18n="weight">Weight</div><div class="value">60.2 kg</div></div>
+        <div class="field"><div class="label">BMI</div><div class="value">20.3</div></div>
+        <div class="field"><div class="label" data-i18n="bloodPressure">Blood Pressure</div><div class="value">—</div></div>
+        <div class="field"><div class="label" data-i18n="heartRate">Heart Rate</div><div class="value">—</div></div>
+        <div class="field"><div class="label">SpO₂</div><div class="value">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="crm" class="section">
+    <div class="card">
+      <h2 data-i18n="crmTitle">CRM & Patient Engagement</h2>
+      <div class="empty" data-i18n="noCrm">No CRM information available.</div>
+    </div>
+  </section>
+
+  <section id="documents" class="section">
+    <div class="card">
+      <h2 data-i18n="documents">Documents</h2>
+      <div class="empty" data-i18n="noDocuments">No documents uploaded.</div>
+    </div>
+  </section>
+</main>
+</div>
+
+<script>
+const translations = {
+  en:{profile:"Profile",history:"Medical History",vitals:"Vital Signs",crm:"CRM",documents:"Documents",darkMode:"Dark Mode",male:"♂ Male",age17:"🎂 17 Years Old",noAllergies:"⚠️ No Allergies",patientProfile:"Patient Profile",name:"Name",dob:"Date of Birth",age:"Age",gender:"Gender",maleText:"Male",bloodType:"Blood Type",allergies:"Allergies",none:"None",patientId:"Patient ID",phone:"Phone Number",email:"Email",address:"Address",emergency:"Emergency Contact",medicalHistory:"Medical History",noHistory:"No medical history records available.",vitalSigns:"Vital Signs",height:"Height",weight:"Weight",bloodPressure:"Blood Pressure",heartRate:"Heart Rate",crmTitle:"CRM & Patient Engagement",noCrm:"No CRM information available.",noDocuments:"No documents uploaded."},
+  "zh-TW":{profile:"個人資料",history:"病史",vitals:"生命徵象",crm:"病患關係管理",documents:"文件",darkMode:"深色模式",male:"♂ 男性",age17:"🎂 17 歲",noAllergies:"⚠️ 無過敏",patientProfile:"病患資料",name:"姓名",dob:"出生日期",age:"年齡",gender:"性別",maleText:"男性",bloodType:"血型",allergies:"過敏史",none:"無",patientId:"病患編號",phone:"電話",email:"電子郵件",address:"地址",emergency:"緊急聯絡人",medicalHistory:"病史",noHistory:"目前沒有病史紀錄。",vitalSigns:"生命徵象",height:"身高",weight:"體重",bloodPressure:"血壓",heartRate:"心率",crmTitle:"病患關係與互動",noCrm:"目前沒有 CRM 資料。",noDocuments:"尚未上傳文件。"},
+  "zh-CN":{profile:"个人资料",history:"病史",vitals:"生命体征",crm:"患者关系管理",documents:"文件",darkMode:"深色模式",male:"♂ 男性",age17:"🎂 17 岁",noAllergies:"⚠️ 无过敏",patientProfile:"患者资料",name:"姓名",dob:"出生日期",age:"年龄",gender:"性别",maleText:"男性",bloodType:"血型",allergies:"过敏史",none:"无",patientId:"患者编号",phone:"电话",email:"电子邮箱",address:"地址",emergency:"紧急联系人",medicalHistory:"病史",noHistory:"目前没有病史记录。",vitalSigns:"生命体征",height:"身高",weight:"体重",bloodPressure:"血压",heartRate:"心率",crmTitle:"患者关系与互动",noCrm:"目前没有 CRM 信息。",noDocuments:"尚未上传文件。"},
+  ja:{profile:"プロフィール",history:"病歴",vitals:"バイタルサイン",crm:"患者管理",documents:"書類",darkMode:"ダークモード",male:"♂ 男性",age17:"🎂 17歳",noAllergies:"⚠️ アレルギーなし",patientProfile:"患者プロフィール",name:"氏名",dob:"生年月日",age:"年齢",gender:"性別",maleText:"男性",bloodType:"血液型",allergies:"アレルギー",none:"なし",patientId:"患者ID",phone:"電話番号",email:"メール",address:"住所",emergency:"緊急連絡先",medicalHistory:"病歴",noHistory:"病歴の記録はありません。",vitalSigns:"バイタルサイン",height:"身長",weight:"体重",bloodPressure:"血圧",heartRate:"心拍数",crmTitle:"患者関係管理",noCrm:"CRM情報はありません。",noDocuments:"書類はアップロードされていません。"},
+  ko:{profile:"프로필",history:"병력",vitals:"활력 징후",crm:"환자 관리",documents:"문서",darkMode:"다크 모드",male:"♂ 남성",age17:"🎂 17세",noAllergies:"⚠️ 알레르기 없음",patientProfile:"환자 프로필",name:"이름",dob:"생년월일",age:"나이",gender:"성별",maleText:"남성",bloodType:"혈액형",allergies:"알레르기",none:"없음",patientId:"환자 ID",phone:"전화번호",email:"이메일",address:"주소",emergency:"비상 연락처",medicalHistory:"병력",noHistory:"병력 기록이 없습니다.",vitalSigns:"활력 징후",height:"키",weight:"체중",bloodPressure:"혈압",heartRate:"심박수",crmTitle:"환자 관계 관리",noCrm:"CRM 정보가 없습니다.",noDocuments:"업로드된 문서가 없습니다."},
+  es:{profile:"Perfil",history:"Historial médico",vitals:"Signos vitales",crm:"CRM",documents:"Documentos",darkMode:"Modo oscuro",male:"♂ Masculino",age17:"🎂 17 años",noAllergies:"⚠️ Sin alergias",patientProfile:"Perfil del paciente",name:"Nombre",dob:"Fecha de nacimiento",age:"Edad",gender:"Género",maleText:"Masculino",bloodType:"Tipo de sangre",allergies:"Alergias",none:"Ninguna",patientId:"ID del paciente",phone:"Teléfono",email:"Correo electrónico",address:"Dirección",emergency:"Contacto de emergencia",medicalHistory:"Historial médico",noHistory:"No hay registros médicos disponibles.",vitalSigns:"Signos vitales",height:"Altura",weight:"Peso",bloodPressure:"Presión arterial",heartRate:"Frecuencia cardíaca",crmTitle:"CRM y participación del paciente",noCrm:"No hay información de CRM disponible.",noDocuments:"No se han subido documentos."},
+  fr:{profile:"Profil",history:"Antécédents médicaux",vitals:"Signes vitaux",crm:"CRM",documents:"Documents",darkMode:"Mode sombre",male:"♂ Masculin",age17:"🎂 17 ans",noAllergies:"⚠️ Aucune allergie",patientProfile:"Profil du patient",name:"Nom",dob:"Date de naissance",age:"Âge",gender:"Sexe",maleText:"Masculin",bloodType:"Groupe sanguin",allergies:"Allergies",none:"Aucune",patientId:"Identifiant patient",phone:"Téléphone",email:"E-mail",address:"Adresse",emergency:"Contact d’urgence",medicalHistory:"Antécédents médicaux",noHistory:"Aucun dossier médical disponible.",vitalSigns:"Signes vitaux",height:"Taille",weight:"Poids",bloodPressure:"Tension artérielle",heartRate:"Fréquence cardiaque",crmTitle:"CRM et engagement du patient",noCrm:"Aucune information CRM disponible.",noDocuments:"Aucun document téléversé."},
+  de:{profile:"Profil",history:"Krankengeschichte",vitals:"Vitalwerte",crm:"CRM",documents:"Dokumente",darkMode:"Dunkelmodus",male:"♂ Männlich",age17:"🎂 17 Jahre",noAllergies:"⚠️ Keine Allergien",patientProfile:"Patientenprofil",name:"Name",dob:"Geburtsdatum",age:"Alter",gender:"Geschlecht",maleText:"Männlich",bloodType:"Blutgruppe",allergies:"Allergien",none:"Keine",patientId:"Patienten-ID",phone:"Telefonnummer",email:"E-Mail",address:"Adresse",emergency:"Notfallkontakt",medicalHistory:"Krankengeschichte",noHistory:"Keine medizinischen Einträge vorhanden.",vitalSigns:"Vitalwerte",height:"Größe",weight:"Gewicht",bloodPressure:"Blutdruck",heartRate:"Herzfrequenz",crmTitle:"CRM und Patientenbindung",noCrm:"Keine CRM-Informationen vorhanden.",noDocuments:"Keine Dokumente hochgeladen."}
+};
+
+document.querySelectorAll(".nav-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+    document.querySelectorAll(".nav-btn").forEach(b=>b.classList.remove("active"));
+    document.getElementById(btn.dataset.tab).classList.add("active");
+    btn.classList.add("active");
+  });
+});
+
+document.getElementById("themeBtn").addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+});
+
+document.getElementById("language").addEventListener("change",e=>{
+  const lang=translations[e.target.value]||translations.en;
+  document.documentElement.lang=e.target.value;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key=el.dataset.i18n;
+    if(lang[key]) el.textContent=lang[key];
+  });
+});
+</script>
+</body>
+</html>
